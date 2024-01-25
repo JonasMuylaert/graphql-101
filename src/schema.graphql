@@ -1,0 +1,33 @@
+type Query {
+  sailboat(id: ID!): Sailboat
+  sailboats(max: Int): [Sailboat]!
+}
+
+type Sailboat {
+  name: String!
+  id: ID!
+  sailArea: Float
+  loa: Float
+  breadth: Float
+  callSign: String
+  crewmembers(max: Int, sort: Sort): [Crewmember!]!
+}
+
+enum Sort {
+  ASC
+  DESC
+}
+
+type Crewmember {
+  id: ID!
+  name: String!
+  role: Role
+  sailboatID: ID!
+}
+
+enum Role {
+  Captain
+  Firstmate
+  Bosum
+  Navigator
+}

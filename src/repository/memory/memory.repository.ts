@@ -24,7 +24,7 @@ export class MemoryRepository implements Repository {
     return sb;
   }
 
-  async getCrewmembersBySailboutID(id: string): Promise<Crewmember[]> {
+  async getCrewmembersBySailboatID(id: string): Promise<Crewmember[]> {
     const crewmembers = await this.getCrewmembers();
 
     return crewmembers.filter((cm) => cm.sailboatID === id);

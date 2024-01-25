@@ -1,5 +1,6 @@
 import {
   Crewmember,
+  CrewmemberResolvers,
   QueryResolvers,
   Sailboat,
   SailboatResolvers,
@@ -20,11 +21,21 @@ export const sailboat: QueryResolvers["sailboat"] = async (_, { id }) => {
   return await repo.getSailboatByID(id);
 };
 
+export const crewmembersSailboat: CrewmemberResolvers["sailboat"] = async (
+  parent
+) => {
+  return await repo.getSailboatByID(parent.sailboatID);
+};
+
+export const crewmember: QueryResolvers["crewmember"] = async (_, { id }) => {
+  return await repo.getCrewmemberByID(id);
+};
+
 export const crewmembers: SailboatResolvers["crewmembers"] = async (
   parent,
   { max, sort }
 ) => {
-  let crewmembers = await repo.getCrewmembersBySailboutID(parent.id);
+  let crewmembers = await repo.getCrewmembersBySailboatID(parent.id);
   if (max) {
     crewmembers = crewmembers.slice(0, max);
   }

@@ -1,6 +1,7 @@
 type Query {
   sailboat(id: ID!): Sailboat
   sailboats(max: Int): [Sailboat]!
+  crewmember(id: ID!): Crewmember
 }
 
 type Sailboat {
@@ -23,6 +24,7 @@ type Crewmember {
   name: String!
   role: Role
   sailboatID: ID!
+  sailboat: Sailboat
 }
 
 enum Role {

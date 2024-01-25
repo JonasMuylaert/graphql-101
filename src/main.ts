@@ -6,7 +6,9 @@ import { Resolvers } from "./generated/resolvers-types";
 import * as path from "path";
 import { readFileSync } from "fs";
 import {
+  crewmember,
   crewmembers,
+  crewmembersSailboat,
   sailboat,
   sailboats,
 } from "./resolvers/sailboat.resolver";
@@ -22,6 +24,10 @@ const resolvers: Resolvers = {
   Query: {
     sailboats: sailboats,
     sailboat: sailboat,
+    crewmember: crewmember,
+  },
+  Crewmember: {
+    sailboat: crewmembersSailboat,
   },
   Sailboat: {
     crewmembers: crewmembers,

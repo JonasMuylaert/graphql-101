@@ -21,13 +21,20 @@ export type Crewmember = {
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   role?: Maybe<Role>;
+  sailboat?: Maybe<Sailboat>;
   sailboatID: Scalars['ID']['output'];
 };
 
 export type Query = {
   __typename?: 'Query';
+  crewmember?: Maybe<Crewmember>;
   sailboat?: Maybe<Sailboat>;
   sailboats: Array<Maybe<Sailboat>>;
+};
+
+
+export type QueryCrewmemberArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -168,11 +175,13 @@ export type CrewmemberResolvers<ContextType = any, ParentType extends ResolversP
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   role?: Resolver<Maybe<ResolversTypes['Role']>, ParentType, ContextType>;
+  sailboat?: Resolver<Maybe<ResolversTypes['Sailboat']>, ParentType, ContextType>;
   sailboatID?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  crewmember?: Resolver<Maybe<ResolversTypes['Crewmember']>, ParentType, ContextType, RequireFields<QueryCrewmemberArgs, 'id'>>;
   sailboat?: Resolver<Maybe<ResolversTypes['Sailboat']>, ParentType, ContextType, RequireFields<QuerySailboatArgs, 'id'>>;
   sailboats?: Resolver<Array<Maybe<ResolversTypes['Sailboat']>>, ParentType, ContextType, Partial<QuerySailboatsArgs>>;
 };
